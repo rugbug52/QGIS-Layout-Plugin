@@ -1,8 +1,0 @@
-[general]
-name=QGis Layout Plugin
-description=This plugin adds a menu for quickly generating 90% complete layouts for exporting
-version=1.0
-qgisMinimumVersion=3.40.10
-supportsQt6=True
-author=Robert Arends
-email=robert.arends@aspenmidstream.com

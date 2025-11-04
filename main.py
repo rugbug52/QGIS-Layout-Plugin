@@ -25,7 +25,7 @@ class QGISLayoutPlugin:
     def initGui(self):
         # Create an action (i.e. a button) with Logo
         icon = os.path.join(os.path.join(plugin_dir, 'logo.png'))
-        self.action = QAction(QIcon(icon), 'Load Basemap', self.iface.mainWindow())
+        self.action = QAction(QIcon(icon), 'Create Layouts', self.iface.mainWindow())
         # Add the action to the toolbar
         self.iface.addToolBarIcon(self.action)
         # Connect the run() method to the action
@@ -62,6 +62,12 @@ class QGISLayoutPlugin:
         
         scale_num = 3000000
 
+        extent_sel = scale_num
+
+        layers_names = []
+        for layer in QgsProject.instance().mapLayers().values():
+            layers_names.append(layer.name())
+
         # Delete existing layouts with our naming pattern
         layouts_to_make = []
         layout_manager = project.layoutManager()
@@ -88,23 +94,7 @@ class QGISLayoutPlugin:
         else:
             bbox_project = bbox_wgs84
         
-        # Define page sizes in mm
-        # page_sizes = {
-        #     'Letter': (215.9, 279.4),
-        #     'Legal': (215.9, 355.6),
-        #     'Ledger': (279.4, 431.8),
-        #     'Arch C': (457.2, 609.6),
-        #     'Arch D': (609.6, 914.4)
-        # }
-        # page_sizes = {
-        #     'Letter': (215.9, 279.4)
-        # }
-        # orientations = ['Portrait']
-        # orientations = ['Portrait', 'Landscape']
-        
         first_layout = None
-
-        # layers = QgsProject.instance().mapLayers(validOnly=True)
         
         for page_name, (width, height) in page_sizes.items():
             # Get horizontal and vertical scale factors for this page size
