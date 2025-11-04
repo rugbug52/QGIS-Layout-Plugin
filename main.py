@@ -394,4 +394,4 @@ class QGISLayoutPlugin:
         if first_layout:
             iface.openLayoutDesigner(first_layout)
             print(f"Opened layout: {first_layout.name()}")
-            self.iface.messageBar().pushSuccess('fuck yeeeah')
+            self.iface.messageBar().pushSuccess('nice','fuck yeeeah')
